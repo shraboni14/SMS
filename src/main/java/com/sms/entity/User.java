@@ -10,14 +10,16 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.Builder;
+
 @Entity
 @Table(name = "user_details")
 @Inheritance(strategy = InheritanceType.JOINED)
 //@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class User {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private String id;
 	@Column(length = 20, nullable = false)
 	private String name;
 
@@ -35,11 +37,11 @@ public class User {
 
 	// -----------------------------------------------------------------------------------------------
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -82,5 +84,27 @@ public class User {
 	public void setRole(Role role) {
 		this.role = role;
 	}
+
+	public User(String id, String name, String email, String userName, String password, Role role) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.email = email;
+		this.userName = userName;
+		this.password = password;
+		this.role = role;
+	}
+
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+
+
+	
+	
 
 }

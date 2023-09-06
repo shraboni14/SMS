@@ -10,7 +10,7 @@ import com.sms.entity.Student;
 
 public class DepartmentDTO {
 
-	private int deptId;
+	private String deptId;
 
 	@NotNull(message = "Department name is required")
 	@Size(min = 2, max = 30, message = "Minimum 2 and maximum 30 charracter required")
@@ -25,11 +25,11 @@ public class DepartmentDTO {
 	@OneToMany
 	private List<Student> students;
 
-	public int getDeptId() {
+	public String getDeptId() {
 		return deptId;
 	}
 
-	public void setDeptId(int deptId) {
+	public void setDeptId(String deptId) {
 		this.deptId = deptId;
 	}
 

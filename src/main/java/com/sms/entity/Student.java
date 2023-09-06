@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import lombok.Builder;
+
 @Entity
 public class Student extends User {
 
@@ -66,5 +68,28 @@ public class Student extends User {
 	public void setDept(Department dept) {
 		this.dept = dept;
 	}
+
+	@Builder
+	public Student(String id, String name, String email, String userName, String password, Role role,
+			LocalDate dateOfBirth, LocalDate dateOfJoining, String contact, Address address, Department dept) {
+		super(id, name, email, userName, password, role);
+		this.dateOfBirth = dateOfBirth;
+		this.dateOfJoining = dateOfJoining;
+		this.contact = contact;
+		this.address = address;
+		this.dept = dept;
+	}
+
+	public Student() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	
+
+	
+	
+	
+	
 
 }

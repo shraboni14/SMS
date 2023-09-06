@@ -45,11 +45,11 @@ public class StudentController {
 	}
 
 	@GetMapping("/getStudent/{stdId}")
-	public StudentDTO getStudentById(@PathVariable("stdId") int id) {
+	public StudentDTO getStudentById(@PathVariable("stdId") String id) {
 		return stdService.getStudentById(id);
 	}
 
-	@GetMapping("getAllStudents")
+	@GetMapping("/getAllStudents")
 	public List<StudentDTO> getAllStudents() {
 
 		return stdService.getAllStudent();
@@ -57,14 +57,14 @@ public class StudentController {
 
 //	@PatchMapping	// when we want to update particular a single details
 	@PutMapping("updateStudent/{id}") // when we want to update every details
-	public StudentDTO updateStudent(@PathVariable("id") int stdId, @Valid @RequestBody StudentDTO stdDto) {
+	public StudentDTO updateStudent(@PathVariable("id") String stdId, @Valid @RequestBody StudentDTO stdDto) {
 
 		final Student std = stdConverter.convertDtoToStudentEntity(stdDto);
 		return stdService.updateStudent(stdId, std);
 	}
 
 	@DeleteMapping("/deleteStdById/{id}")
-	public ResponseEntity<String> deleteById(@PathVariable("id") int stdId) {
+	public ResponseEntity<String> deleteById(@PathVariable("id") String stdId) {
 		stdService.deleteStudentById(stdId);
 		return new ResponseEntity<String>("Student with id " + stdId + " Deleted successfully", HttpStatus.OK);
 	}
@@ -74,4 +74,21 @@ public class StudentController {
 		stdService.deleteAll();
 		return new ResponseEntity<String>("All student details deleted successfully", HttpStatus.OK);
 	}
+
+	@GetMapping("/getStudentByName{name}")
+	public List<StudentDTO> findStudentByName(@PathVariable("name") String name) {
+		return stdService.getStudentByName(name);
+	}
+
+	@GetMapping("/getStudentByEmail/{email}")
+	public StudentDTO findStudentByEmail(@PathVariable("email") String email) {
+		return stdService.getStudentByEmail(email);
+	}
+
+	@GetMapping("/getStudentByDeptId/{deptId}")
+	public List<StudentDTO> getStudentsByDeptId(@PathVariable("deptId") String deptId) {
+		return stdService.getAllStudentsByDeptId(deptId);
+	}
+
+
 }

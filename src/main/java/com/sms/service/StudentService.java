@@ -8,7 +8,7 @@ import com.sms.dto.StudentDTO;
 
 import com.sms.entity.Student;
 
-public interface StudentService{
+public interface StudentService {
 
 //	method used to save student details into the database
 	String createStudent(Student student);
@@ -17,18 +17,26 @@ public interface StudentService{
 	StudentDTO saveStudent(Student student);
 
 //	Method to fetch student details
-	StudentDTO getStudentById(int stdId);
-	
+	StudentDTO getStudentById(String stdId);
+
 	List<StudentDTO> getAllStudent();
-	
+
 //	method to update saved student details which is present in the database
-	
-	StudentDTO updateStudent(int stdId, Student student);
-	
+
+	StudentDTO updateStudent(String stdId, Student student);
+
 //	method to delete one student details
-	void deleteStudentById(int stdId);
-	
+	void deleteStudentById(String stdId);
+
 //	method to delete all the student
 	void deleteAll();
-	
+
+//	method to fetch studentDetails using name
+
+	List<StudentDTO> getStudentByName(String name);
+
+	StudentDTO getStudentByEmail(String email);
+
+	List<StudentDTO> getAllStudentsByDeptId(String deptId);
+
 }

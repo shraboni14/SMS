@@ -4,12 +4,12 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,11 +21,12 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Builder
 public class Department {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int deptId;
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private String deptId;
 
 	@Column(length = 30, nullable = false)
 	private String deptName;
@@ -36,15 +37,15 @@ public class Department {
 	@Column(nullable = false)
 	private int noOfStaff;
 
-	@OneToMany
+	@OneToMany(fetch = FetchType.LAZY)
 	private List<Student> students; // due to one department has multiple student we need to store it into a
 									// arrayList
 //-----------------------------------------------------------------------------------------------
-	public int getDeptId() {
+	public String getDeptId() {
 		return deptId;
 	}
 
-	public void setDeptId(int deptId) {
+	public void setDeptId(String deptId) {
 		this.deptId = deptId;
 	}
 

@@ -8,12 +8,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.sms.dto.DepartmentDTO;
 import com.sms.entity.Department;
 import com.sms.service.DepartmentService;
 import com.sms.util.DepartmentConverter;
 
+@RestController
 public class DepartmentController {
 
 	@Autowired
@@ -29,7 +31,8 @@ public class DepartmentController {
 
 	}
 
-	public ResponseEntity<String> assignedToDept(@PathVariable("sId") int stdId, @PathVariable("dId") int deptId) {
+	@PostMapping("/assignStudent/{sId}/toDept/{dId}")
+	public ResponseEntity<String> assignedToDept(@PathVariable("sId") String stdId, @PathVariable("dId") String deptId) {
 		deptService.assignStudentToDepartment(stdId, deptId);
 		return new ResponseEntity<String>("Student with id " + stdId + " assigned to department id " + deptId,
 				HttpStatus.OK);

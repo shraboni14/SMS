@@ -10,7 +10,7 @@ import com.sms.entity.Role;
 
 public class UserDTO {
 
-	private int id;
+	private String id;
 
 	@NotNull(message = "Name is required")
 	@Size(min = 2 , max = 30, message = "Minimum 2 and maximum 30 charracters allowed")
@@ -30,11 +30,11 @@ public class UserDTO {
 	@OneToOne // one user can have only one role
 	private Role role;
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
